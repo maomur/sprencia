@@ -1,0 +1,8 @@
+//Petición raiz
+GET http://localhost:3330/
+
+
+
+
+
+

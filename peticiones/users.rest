@@ -1,0 +1,73 @@
+//--------------------  USUARIOS --------------------------//
+
+###
+//Listar usuarios
+GET http://localhost:3330/api/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODI2OTIzMTMsImlhdCI6MTY4MjY4ODcxM30.ypLsK4UMLJAUlgmnL6fJmAb1LVfc82EWsxd8ZQXEaBY
+
+### //Ver único usuario
+GET http://localhost:3330/api/users/9
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODI2OTIzMTMsImlhdCI6MTY4MjY4ODcxM30.ypLsK4UMLJAUlgmnL6fJmAb1LVfc82EWsxd8ZQXEaBY
+
+### //Crear un usuario
+POST http://localhost:3330/api/users/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODI2OTIzMTMsImlhdCI6MTY4MjY4ODcxM30.ypLsK4UMLJAUlgmnL6fJmAb1LVfc82EWsxd8ZQXEaBY
+
+{
+    "name": "Mauricio",
+    "lastname": "Murcia Spencer",
+    "email": "admin@gmail.com",
+    "roll": "admin",
+    "password": "123456789",
+    "picture": null,
+    "ciudad": "Madrid",
+    "isDelete": 1
+}
+
+###
+//Editar Usuario
+POST http://localhost:3330/api/users/update/1
+Content-Type: application/json
+
+{
+    "name": "Mauricio",
+    "lastname": "Murcia Spencer",
+    "email": "maomurs@gmail.com",
+    "roll": "cliente",
+    "password": 1234,
+    "picture": null,
+    "ciudad": "Barcelona",
+    "isDelete": 0
+}
+
+###
+//Elminar un usuario por Id
+GET http://localhost:3330/api/users/delete/13
+
+
+###
+//Registro de un usuario
+POST http://localhost:3330/api/users/register
+Content-Type: application/json
+
+{
+    "name": "Rosa Esteban",
+    "lastname": "Castro",
+    "email": "rosacastro@gmail.com",
+    "roll": "admin",
+    "password": 123456789,
+    "picture": null,
+    "ciudad": "Barcelona",
+    "isDelete": 0
+}
+
+###
+//Login
+POST http://localhost:3330/api/users/login
+Content-Type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password": "123456789"
+}

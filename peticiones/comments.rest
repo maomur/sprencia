@@ -1,0 +1,38 @@
+//--------------------  COMMENTS --------------------------//
+
+###
+//Listar Opiniones
+GET http://localhost:3330/api/comments
+
+###
+//Crear un Comentario
+POST http://localhost:3330/api/comments/create
+Content-Type: application/json
+//Authorization: cualquiera
+
+{
+    "comentario": "Muchas gracias por la gran atención",
+    "estado": "Publicado",
+    "usuario": "Carmen",
+    "isDelete": 0
+}
+
+###
+//Editar un Comentario
+POST http://localhost:3330/api/comments/update/7
+Content-Type: application/json
+
+{
+    "comentario": "La mejor atención y el mejor precio",
+    "estado": "Publicado",
+    "usuario": "Mauricio",
+    "isDelete": 0
+}
+
+###
+//Ver único comentario
+GET http://localhost:3330/api/comments/5
+
+###
+//Eliminar un comentario
+GET http://localhost:3330/api/comments/delete/6
