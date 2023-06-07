@@ -1,0 +1,10 @@
+//--------------------  CATEGORIAS --------------------------//
+
+###
+//Listar Ciudades
+GET http://localhost:3330/api/ciudades
+
+###
+//Listar cursos por ciudad
+GET http://localhost:3330/api/ciudades/madrid
+

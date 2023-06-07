@@ -1,0 +1,9 @@
+//--------------------  HORARIOS --------------------------//
+
+###
+//Listar Horarios
+GET http://localhost:3330/api/horarios
+
+###
+//Listar Cursos por Horario
+GET http://localhost:3330/api/horarios/tarde

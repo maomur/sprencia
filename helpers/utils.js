@@ -10,6 +10,7 @@ function createToken(user) {
     return jwt.sign(obj, 'codehouse')
 }
 
+
 module.exports = {
     createToken
 }

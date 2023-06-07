@@ -10,22 +10,11 @@ const { createToken } = require('../../helpers/utils')
 //--------------- RUTAS USUARIOS -----------------//
 
 // Obtener todos los usuarios
-router.get('/', checkToken, checkAdmin, async (req, res) => {
+//router.get('/', checkToken, checkAdmin, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const [resultado] = (await UsuarioModel.getAllUsers());
-        res.json({ title: resultado });
-    } catch (error) {
-        res.json({ error: error.message })
-    }
-})
-
-//Crear un usuario
-router.post('/create', async (req, res) => {
-    req.body.password = bcrypt.hashSync(req.body.password, 10);
-
-    try {
-        const [resultado] = await UsuarioModel.createUser(req.body);
-        res.json({ title: resultado })
+        res.json(resultado);
     } catch (error) {
         res.json({ error: error.message })
     }
@@ -42,37 +31,39 @@ router.get('/:userId', checkToken, checkAdmin, async (req, res) => {
     }
 })
 
-//Actualizar un usario
-router.post('/update/:userId', checkToken, async (req, res) => {
+//Eliminar usuario por Id
+//checkToken, checkAdmin
+router.get('/delete/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
-        const resultado = await UsuarioModel.updateUser(userId, req.body);
-        res.json({ title: resultado })
+        const [resultado] = await UsuarioModel.deleteUserById(userId);
+        res.json(resultado)
     } catch (error) {
         res.json({ error: error.message })
     }
 })
 
-//Eliminar usuario por Id
-router.get('/delete/:userId', checkToken, checkAdmin, async (req, res) => {
+//Crear un usuario
+//checkToken, checkAdmin
+router.post('/create', async (req, res) => {
     try {
-        const { userId } = req.params;
-        const resultado = await UsuarioModel.deleteUserById(userId);
-        res.json({ title: resultado })
+        req.body.password = bcrypt.hashSync(req.body.password, 9);
+        const [resultado] = await UsuarioModel.createUser(req.body);
+        res.json(resultado)
     } catch (error) {
         res.json({ error: error.message })
     }
 })
 
 //Registro de un usuario
-
+//checkToken, checkAdmin
 router.post('/register',
-    body('email').isEmail().exists(),
-    body('name').isLength({ min: 5 }),
+    // body('email').isEmail().exists(),
+    // body('name').isLength({ min: 5 }),
     async (req, res) => {
         try {
             req.body.password = bcrypt.hashSync(req.body.password, 10);
-            const [resultado] = await UsuarioModel.createUser(req.body);
+            const resultado = await UsuarioModel.createUser(req.body);
             res.json(resultado);
         } catch (error) {
             res.json({ error: error.message })
@@ -81,21 +72,30 @@ router.post('/register',
     })
 
 
+//Actualizar un usario
+//checkToken, checkAdmin
+router.post('/update/:userId', async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const resultado = await UsuarioModel.updateUser(userId, req.body);
+        res.json(resultado)
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
+
+
+
 //Login
 router.post('/login', async (req, res) => {
     const { email, password } = req.body
-
     const [resultado] = await UsuarioModel.getUserByEmail(email);
-    console.log(resultado)
-
-    const user = resultado[0];
-
-    if (!resultado) {
+    if (resultado.length === 0) {
         return res.json({ error: 'Error en email o contraseña' })
     }
+    const user = resultado[0];
     const equals = bcrypt.compareSync(password, user.password);
-    console.log('iguales?', equals)
-
 
     if (equals) {
         // Login correcto

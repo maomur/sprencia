@@ -3,41 +3,103 @@ const CursoModel = require('../../models/curso.model');
 const { checkToken, checkAdmin } = require('../middlewares');
 
 //--------------- RUTAS CURSOS -----------------//
-// TODO => GET, POST, PUT, DELETE Ordenar!
 
-//Obtener todos los cursos
+//Obtener todos los cursos límite 12
 router.get('/', async (req, res) => {
     try {
         const [resultado] = await CursoModel.getAllCourses();
-        res.json({ title: resultado })
+        const cursoLimitado = resultado.map((curso) => {
+            const descripcionLimitada = curso.descripcion.substring(0, 70);
+            return { ...curso, descripcion: descripcionLimitada + '...' }
+        })
+        res.json(cursoLimitado)
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
+//Obtener todos los cursos sin límite
+router.get('/all', async (req, res) => {
+    const [resultado] = await CursoModel.getAllCoursesUnlimited();
+    res.json(resultado)
+})
+
+//Obtener últimos 10 cursos
+router.get('/lastcourses', async (req, res) => {
+    try {
+        const [resultado] = await CursoModel.getLastCourses();
+
+        const cursoLimitado = resultado.map((curso) => {
+            const descripcionLimitada = curso.descripcion.substring(0, 70);
+            return { ...curso, descripcion: descripcionLimitada + '...' }
+        })
+        res.json(cursoLimitado)
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
+//Cursos para Buscador
+router.get('/search/:nombre', async (req, res) => {
+    const [resultado] = await CursoModel.searchCourse()
+    res.json(resultado)
+})
+
+//Filtrar un curso por Id
+router.get('/course/:courseId', async (req, res) => {
+    try {
+        const { courseId } = req.params;
+        const [resultado] = await CursoModel.getCourseById(courseId);
+        res.json(resultado[0])
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
+
+//Filtrar cursos por Categoría
+router.get('/:categoria', async (req, res) => {
+    try {
+        const { categoria } = req.params;
+        const [resultado] = await CursoModel.getByCategory(categoria);
+        const cursoLimitado = resultado.map((curso) => {
+            const descripcionLimitada = curso.descripcion.substring(0, 70);
+            return { ...curso, descripcion: descripcionLimitada + '...' }
+
+        })
+        res.json(cursoLimitado)
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
+
+//Eliminar un curso por Id
+//checkToken, checkAdmin
+router.get('/delete/:courseId', async (req, res) => {
+    try {
+        const { courseId } = req.params;
+        const [resultado] = await CursoModel.deletCourseById(courseId);
+        res.json(resultado)
     } catch (error) {
         res.json({ error: error.message })
     }
 })
 
 //Crear un curso
-router.post('/create', checkToken, checkAdmin, async (req, res) => {
+////checkToken, checkAdmin
+router.post('/create', async (req, res) => {
     try {
         const [resultado] = await CursoModel.createCourse(req.body);
-        res.json({ title: resultado })
-    } catch (error) {
-        res.json({ error: error.message })
-    }
-})
-
-//Obtener un curso por Id
-router.get('/:courseId', async (req, res) => {
-    try {
-        const { courseId } = req.params;
-        const [resultado] = await CursoModel.getCourseById(courseId);
-        res.json({ title: resultado })
+        res.json(resultado)
     } catch (error) {
         res.json({ error: error.message })
     }
 })
 
 //Actualizar un curso
-router.post('/update/:courseId', checkToken, checkAdmin, async (req, res) => {
+//checktoken, checkadmin
+router.post('/update/:courseId', async (req, res) => {
     try {
         const { courseId } = req.params;
         const [resultado] = await CursoModel.updateCourse(courseId, req.body);
@@ -47,16 +109,6 @@ router.post('/update/:courseId', checkToken, checkAdmin, async (req, res) => {
     }
 })
 
-//Eliminar un curso por Id
-router.get('/delete/:courseId', checkToken, checkAdmin, async (req, res) => {
-    try {
-        const { courseId } = req.params;
-        const [resultado] = await CursoModel.deletCourseById(courseId);
-        res.json({ title: resultado })
-    } catch (error) {
-        res.json({ error: error.message })
-    }
-})
 
 
 module.exports = router;

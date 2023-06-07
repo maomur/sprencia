@@ -9,7 +9,7 @@ const { checkToken, checkAdmin } = require('../middlewares');
 router.get('/', async (req, res) => {
     try {
         const [resultado] = await CommentModel.getAllComments();
-        res.json({ title: resultado })
+        res.json(resultado)
     } catch (error) {
         res.json({ error: error.message })
     }
@@ -24,21 +24,35 @@ router.get('/:commentId', async (req, res) => {
     } catch (error) {
         res.json({ error: error.message })
     }
+})
+
+//Eliminar comentario por Id
+// //checkToken, checkAdmin
+router.get('/delete/:commentId', async (req, res) => {
+    try {
+        const { commentId } = req.params;
+        const [resultado] = await CommentModel.deleteCommentById(commentId);
+        res.json(resultado)
+    } catch (error) {
+        res.json({ error: error.message })
+    }
 
 })
 
-//Crear un usuario
-router.post('/create', checkToken, checkAdmin, async (req, res) => {
+//Crear un Comentario
+// //checkToken, checkAdmin
+router.post('/create', async (req, res) => {
     try {
         const [resultado] = await CommentModel.createComment(req.body);
-        res.json({ tittle: resultado })
+        res.json(resultado)
     } catch (error) {
         res.json({ error: error.message })
     }
 })
 
 //Actualizar un comentario
-router.post('/update/:commentId', checkToken, checkAdmin, async (req, res) => {
+//checkToken, checkAdmin
+router.post('/update/:commentId', async (req, res) => {
     try {
         const { commentId } = req.params;
         const [resultado] = await CommentModel.updateComment(commentId, req.body);
@@ -48,19 +62,6 @@ router.post('/update/:commentId', checkToken, checkAdmin, async (req, res) => {
     }
 
 })
-
-//Eliminar comentario por Id
-router.get('/delete/:commentId', checkToken, checkAdmin, async (req, res) => {
-    try {
-        const { commentId } = req.params;
-        const resultado = await CommentModel.deleteCommentById(commentId);
-        res.json({ title: resultado })
-    } catch (error) {
-        res.json({ error: error.message })
-    }
-
-})
-
 
 
 module.exports = router;

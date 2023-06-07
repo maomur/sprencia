@@ -23,12 +23,20 @@ const checkToken = async (req, res, next) => {
     if (dayjs().unix() > obj.exp_date) {
         return res.json({ error: 'el token está caducado' })
     }
+
+    //Recuperamos información usuario
+    const [usuario] = await UsuarioModel.getUserById(obj.userId)
+    req.user = usuario[0];
     next()
 }
 
 
 const checkAdmin = (req, res, next) => {
-
+    if (req.user.roll === "admin") {
+        next()
+    } else {
+        return res.json({ error: "No tienes permiso para ver este contenido" })
+    }
 }
 
 

@@ -3,25 +3,28 @@
 ###
 //Listar usuarios
 GET http://localhost:3330/api/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODI2OTIzMTMsImlhdCI6MTY4MjY4ODcxM30.ypLsK4UMLJAUlgmnL6fJmAb1LVfc82EWsxd8ZQXEaBY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODM3NDY1MzQsImlhdCI6MTY4Mzc0NjIzNH0.dsSR6WQdC06TWB60l5ONZAJHL7NFgSkCOSY8-SCXrD8
 
 ### //Ver único usuario
 GET http://localhost:3330/api/users/9
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODI2OTIzMTMsImlhdCI6MTY4MjY4ODcxM30.ypLsK4UMLJAUlgmnL6fJmAb1LVfc82EWsxd8ZQXEaBY
 
+### Buscar curso por palabra
+GET http://localhost:3330/api/courses/search/guitarra
+
+# TODO
 ### //Crear un usuario
 POST http://localhost:3330/api/users/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODI2OTIzMTMsImlhdCI6MTY4MjY4ODcxM30.ypLsK4UMLJAUlgmnL6fJmAb1LVfc82EWsxd8ZQXEaBY
 
 {
-    "name": "Mauricio",
+    "name": "Mao 1256",
     "lastname": "Murcia Spencer",
-    "email": "admin@gmail.com",
-    "roll": "admin",
-    "password": "123456789",
-    "picture": null,
     "ciudad": "Madrid",
+    "picture": "hola",
+    "email": "132@gmail.com",
+    "password": "123445",
+    "roll": "cliente",
     "isDelete": 1
 }
 
@@ -54,11 +57,11 @@ Content-Type: application/json
 {
     "name": "Rosa Esteban",
     "lastname": "Castro",
-    "email": "rosacastro@gmail.com",
-    "roll": "admin",
-    "password": 123456789,
+    "ciudad": "Madrid",
     "picture": null,
-    "ciudad": "Barcelona",
+    "email": "rosacastro@gmail.com",
+    "password": "123456789",
+    "roll": "admin",
     "isDelete": 0
 }
 

@@ -1,0 +1,10 @@
+//--------------------  CATEGORIAS --------------------------//
+
+###
+//Listar Categorías
+GET http://localhost:3330/api/categories
+
+###
+//Listar Cursos por Categoría
+GET http://localhost:3330/api/courses/Historia
+

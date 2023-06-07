@@ -2,22 +2,72 @@ const db = require('../config/db').promise();
 
 //Listar todos los cursos
 const getAllCourses = () => {
+    return db.query('SELECT * FROM courses WHERE isDelete = 0 LIMIT 12')
+}
+
+const getAllCoursesUnlimited = () => {
     return db.query('SELECT * FROM courses WHERE isDelete = 0')
 }
 
-//Buscar un único curso
+//Listar 10  últimos cursos por ID
+const getLastCourses = () => {
+    return db.query('SELECT * FROM courses WHERE isDelete = 0 ORDER BY id DESC LIMIT 12')
+}
+
+//Filtrar un único curso por Id
 const getCourseById = (courseId) => {
     return db.query('SELECT * FROM courses WHERE id = ?', [courseId])
 }
 
+//Buscador de cursos
+const searchCourse = (nombre) => {
+    return db.query('SELECT * FROM courses WHERE isDelete = 0 ORDER BY nombre = ? DESC', [nombre])
+}
+
+
+//Filtrar cursos por Ciudad
+const getByCity = (ciudad) => {
+    return db.query('SELECT * FROM courses WHERE ciudad = ?', [ciudad])
+}
+
+//Filtrar cursos por Horario
+const getByHorario = (horario) => {
+    return db.query('SELECT * FROM courses WHERE horario = ?', [horario])
+}
+
+//Filtrar cursos por Categoría
+const getByCategory = (category) => {
+    return db.query('SELECT * FROM courses WHERE categoria = ?', [category]);
+}
+
+//Ordenar por Precio Descendente
+const orderByPriceDesc = (precio) => {
+    return db.query('SELECT * FROM  courses ORDER BY courses.precio DESC', [precio])
+}
+
+//Ordenar por Precio Ascendente
+const orderByPriceAsc = (precio) => {
+    return db.query('SELECT * FROM courses ORDER BY courses.precio ASC', [precio])
+}
+
+//Ordenar por Horario DESC
+const orderByHorarioDesc = (horario) => {
+    return db.query('SELECT * FROM courses ORDER BY courses.horario DESC')
+}
+
+//Ordenar por Horario ASC
+const orderByHorarioAsc = (horario) => {
+    return db.query('SELECT * FROM courses ORDER BY courses.horario ASC')
+}
+
 //Agregar un curso
-const createCourse = ({ nombre, descripcion, horario_inicio, horario_cierre, foto1, foto2, foto3, precio, estado }) => {
-    return db.query('INSERT INTO courses(nombre, descripcion, horario_inicio, horario_cierre, foto1, foto2, foto3, precio, estado, isDelete) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, descripcion, horario_inicio, horario_cierre, foto1, foto2, foto3, precio, estado, 0])
+const createCourse = ({ nombre, descripcion, ciudad, fecha_inicio, fecha_fin, foto1, foto2, foto3, precio, horario, total_horas, estado, isDelete, rating, categoria }) => {
+    return db.query('INSERT INTO courses(nombre, descripcion, ciudad, fecha_inicio, fecha_fin, foto1, foto2, foto3, precio, horario, total_horas, estado, isDelete, rating, categoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, descripcion, ciudad, fecha_inicio, fecha_fin, foto1, foto2, foto3, precio, horario, total_horas, estado, 0, rating, categoria])
 }
 
 //Editar un curso
-const updateCourse = (courseId, { nombre, descripcion, horario_inicio, horario_cierre, foto1, foto2, foto3, precio, estado, isDelete }) => {
-    return db.query('UPDATE courses SET nombre = ?, descripcion = ?, horario_inicio = ?, horario_cierre = ?, foto1 = ?, foto2 = ?, foto3 = ?, precio = ?, estado = ?, isDelete = ? WHERE id = ?', [nombre, descripcion, horario_inicio, horario_cierre, foto1, foto2, foto3, precio, estado, isDelete, courseId])
+const updateCourse = (courseId, { nombre, descripcion, ciudad, fecha_inicio, fecha_fin, foto1, foto2, foto3, precio, horario, total_horas, estado, isDelete, rating, categoria }) => {
+    return db.query('UPDATE courses SET nombre = ?, descripcion = ?, ciudad = ?, fecha_inicio = ?, fecha_fin = ?, foto1 = ?, foto2 = ?, foto3 = ?, precio = ?, horario = ?, total_horas = ?, estado = ?, isDelete = ?, rating = ?, categoria = ?, categoria = ? WHERE id = ?', [nombre, descripcion, ciudad, fecha_inicio, fecha_fin, foto1, foto2, foto3, precio, horario, total_horas, estado, isDelete, rating, categoria, courseId])
 }
 
 //Eliminar un curso haciendo un Update
@@ -27,5 +77,5 @@ const deletCourseById = (courseId) => {
 
 
 module.exports = {
-    getAllCourses, getCourseById, createCourse, deletCourseById, updateCourse
+    getAllCourses, getLastCourses, getCourseById, createCourse, deletCourseById, updateCourse, getByCategory, getByCity, getByHorario, orderByPriceDesc, orderByPriceAsc, orderByHorarioDesc, orderByHorarioAsc, searchCourse, getAllCoursesUnlimited
 }

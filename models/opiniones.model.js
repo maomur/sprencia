@@ -11,12 +11,13 @@ const getCommentById = (commentId) => {
 }
 
 //Agregar un comentario
-const createComment = ({ comentario, fecha_comentario, estado, usuario }) => {
-    return db.query('INSERT INTO comentarios(comentario, fecha_comentario, estado, usuario, isDelete) VALUES (?, ?, ?, ?, ?)', [comentario, fecha_comentario, estado, usuario, 0])
+const createComment = ({ comentario, fecha_comentario, estado, usuario, isDelete, curso, curso_id }) => {
+    return db.query('INSERT INTO comentarios(comentario, fecha_comentario, estado, usuario, isDelete, curso, curso_id) VALUES (?, ?, ?, ?, ?, ?, ?)', [comentario, fecha_comentario, estado, usuario, 0, curso, curso_id])
 }
 
-//Editar un comentario
-const updateComment = (commentId, { comentario, fecha_comentario, estado, usuario, isDelete }) => {
+//TO DO
+//Editar un comentario 
+const updateComment = (commentId, { comentario, fecha_comentario, estado, usuario, isDelete, curso, curso_id }) => {
     return db.query('UPDATE comentarios SET comentario = ?, fecha_comentario = ?, estado = ?, usuario = ?, isDelete = ? WHERE id = ?', [comentario, fecha_comentario, estado, usuario, isDelete, commentId])
 }
 

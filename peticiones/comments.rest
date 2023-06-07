@@ -8,13 +8,16 @@ GET http://localhost:3330/api/comments
 //Crear un Comentario
 POST http://localhost:3330/api/comments/create
 Content-Type: application/json
-//Authorization: cualquiera
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODM3NDg1MDcsImlhdCI6MTY4Mzc0ODIwN30.a81fQ7vt_8mf1mirc4rflHrHb4bClnQ2IIWMuGwGU4Y
 
 {
-    "comentario": "Muchas gracias por la gran atención",
+    "comentario": "Nuevo Compentario",
+    "fecha_comentario": "",
     "estado": "Publicado",
     "usuario": "Carmen",
-    "isDelete": 0
+    "isDelete": 0,
+    "curso": "",
+    "curso_id": 10
 }
 
 ###

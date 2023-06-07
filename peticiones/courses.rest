@@ -5,26 +5,41 @@
 GET http://localhost:3330/api/courses
 
 ###
+//Listar Últimos 10 Cursos
+GET http://localhost:3330/api/courses/lastcourses
+
+
+###
+//Cursos para el Buscador
+GET http://localhost:3330/api/courses/search
+
+###
 // Ver único curso
-GET http://localhost:3330/api/courses/10
+GET http://localhost:3330/api/courses/course/23
+
+###
+//Ver por Categoría
+GET http://localhost:3330/api/courses/arte
 
 ###
 //Crear un curso
 POST http://localhost:3330/api/courses/create 
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiaWF0IjoxNjgyNjI1MDg3LCJleHAiOjE2ODI2MjUzODd9.KZKnqxmNPDYTu9I-mOmxawhNje1qhVqmWVqBjWG_0n0
+# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODU2NDkyODUsImlhdCI6MTY4NTY0ODk4NX0.PF_lT04iqxF4JhxM0S1cGdqBfX6BxjCAJBtih4msbYM
 
 {
-    "nombre": "WordPress Básico",
-    "descripcion": null,
-    "horario_inicio": null,
-    "horario_cierre": null,
-    "foto1": null,
-    "foto2": null,
-    "foto3": null,
-    "precio": null,
+    "nombre": "Otro Curso",
+    "descripcion": "",
+    "ciudad": "",
+    "fecha_inicio": "",
+    "fecha_fin": "",
+    "precio": 100,
+    "horario": "Mañana",
+    "total_horas": 3,
     "estado": "inactivo",
-    "isDelete": 1
+    "isDelete": 1,
+    "rating": 4,
+    "categoria": "Informática"
 }
 
 ###
