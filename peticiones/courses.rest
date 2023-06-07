@@ -28,7 +28,7 @@ Content-Type: application/json
 # Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODU2NDkyODUsImlhdCI6MTY4NTY0ODk4NX0.PF_lT04iqxF4JhxM0S1cGdqBfX6BxjCAJBtih4msbYM
 
 {
-    "nombre": "Otro Curso",
+    "nombre": "Marketing Digital",
     "descripcion": "",
     "ciudad": "",
     "fecha_inicio": "",

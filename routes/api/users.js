@@ -45,7 +45,7 @@ router.get('/delete/:userId', async (req, res) => {
 
 //Crear un usuario
 //checkToken, checkAdmin
-router.post('/create', async (req, res) => {
+router.post('/create', checkToken, checkAdmin, async (req, res) => {
     try {
         req.body.password = bcrypt.hashSync(req.body.password, 9);
         const [resultado] = await UsuarioModel.createUser(req.body);
