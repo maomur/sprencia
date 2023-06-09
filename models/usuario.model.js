@@ -17,7 +17,7 @@ const getUserByEmail = (email) => {
 
 //Agregar un usuario
 const createUser = ({ name, lastname, ciudad, picture, email, password, roll, isDelete }) => {
-    return db.query('INSERT INTO users(name, lastname, ciudad, picture, email, password, roll, isDelete) VALUES(?, ?, ?, ?, ?, ?, ?, ?)', [name, lastname, ciudad, picture, email, password, roll, isDelete])
+    return db.query('INSERT INTO users(name, lastname, ciudad, picture, email, password, roll, isDelete) VALUES(?, ?, ?, ?, ?, ?, ?, ?)', [name, lastname, ciudad, picture, email, password, roll, 0])
 }
 
 //Editar un usuario

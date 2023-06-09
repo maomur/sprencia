@@ -10,6 +10,10 @@ const getCommentById = (commentId) => {
     return db.query('SELECT * FROM comentarios WHERE id = ?', [commentId])
 }
 
+const getCommentByCurso = (cursoId) => {
+    return db.query('SELECT * FROM comentarios WHERE curso_id = ?', [cursoId])
+}
+
 //Agregar un comentario
 const createComment = ({ comentario, fecha_comentario, estado, usuario, isDelete, curso, curso_id }) => {
     return db.query('INSERT INTO comentarios(comentario, fecha_comentario, estado, usuario, isDelete, curso, curso_id) VALUES (?, ?, ?, ?, ?, ?, ?)', [comentario, fecha_comentario, estado, usuario, 0, curso, curso_id])
@@ -28,5 +32,5 @@ const deleteCommentById = (commentId) => {
 
 
 module.exports = {
-    getAllComments, getCommentById, createComment, updateComment, deleteCommentById
+    getAllComments, getCommentById, createComment, updateComment, deleteCommentById, getCommentByCurso
 }

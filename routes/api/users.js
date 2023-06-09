@@ -20,16 +20,6 @@ router.get('/', async (req, res) => {
     }
 })
 
-//Obtener un usuario por Id
-router.get('/:userId', checkToken, checkAdmin, async (req, res) => {
-    try {
-        const { userId } = req.params;
-        const [resultado] = await UsuarioModel.getUserById(userId);
-        res.json({ title: resultado })
-    } catch (error) {
-        res.json({ error: error.message })
-    }
-})
 
 //Eliminar usuario por Id
 //checkToken, checkAdmin
@@ -85,6 +75,17 @@ router.post('/update/:userId', async (req, res) => {
 })
 
 
+//Obtener Usuario por ID
+router.get('/:userId', async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const [resultado] = await UsuarioModel.getUserById(userId);
+        res.json(resultado[0])
+    } catch (error) {
+        res.json({ error: error.message })
+
+    }
+})
 
 
 //Login

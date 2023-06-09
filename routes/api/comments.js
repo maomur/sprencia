@@ -20,10 +20,18 @@ router.get('/:commentId', async (req, res) => {
     try {
         const { commentId } = req.params;
         const [resultado] = await CommentModel.getCommentById(commentId);
-        res.json({ title: resultado })
+        res.json(resultado)
     } catch (error) {
         res.json({ error: error.message })
     }
+})
+
+//Obtener un comentario por actividad
+router.get('/curso/:cursoId', async (req, res) => {
+    const { cursoId } = req.params;
+
+    const [resultado] = await CommentModel.getCommentByCurso(cursoId);
+    res.json(resultado)
 })
 
 //Eliminar comentario por Id
