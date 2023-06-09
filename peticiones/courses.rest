@@ -44,21 +44,26 @@ Content-Type: application/json
 
 ###
 // Editar un Curso
-POST http://localhost:3330/api/courses/update/8
+POST http://localhost:3330/api/courses/update/14
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODI2OTIzMTMsImlhdCI6MTY4MjY4ODcxM30.ypLsK4UMLJAUlgmnL6fJmAb1LVfc82EWsxd8ZQXEaBY
 
 {
-    "nombre": "Joomla Avanzado",
-    "descripcion": null,
-    "horario_inicio": null,
-    "horario_cierre": null,
+    "nombre": "Prueba de Curso Edición",
+    "descripcion": "Esta es la descripción del curso.",
+    "ciudad": "Bogotá",
+    "fecha_inicio": "Julio 30",
+    "fecha_fin": "Agosto 01",
     "foto1": null,
     "foto2": null,
     "foto3": null,
-    "precio": null,
+    "precio": 110,
+    "horario": null,
+    "total_horas": null,
     "estado": "inactivo",
-    "isDelete": 1
+    "isDelete": 1,
+    "rating": 5,
+    "categoria": "Arte"
 }
 
 ###

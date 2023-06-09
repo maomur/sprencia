@@ -67,7 +67,7 @@ const createCourse = ({ nombre, descripcion, ciudad, fecha_inicio, fecha_fin, fo
 
 //Editar un curso
 const updateCourse = (courseId, { nombre, descripcion, ciudad, fecha_inicio, fecha_fin, foto1, foto2, foto3, precio, horario, total_horas, estado, isDelete, rating, categoria }) => {
-    return db.query('UPDATE courses SET nombre = ?, descripcion = ?, ciudad = ?, fecha_inicio = ?, fecha_fin = ?, foto1 = ?, foto2 = ?, foto3 = ?, precio = ?, horario = ?, total_horas = ?, estado = ?, isDelete = ?, rating = ?, categoria = ?, categoria = ? WHERE id = ?', [nombre, descripcion, ciudad, fecha_inicio, fecha_fin, foto1, foto2, foto3, precio, horario, total_horas, estado, isDelete, rating, categoria, courseId])
+    return db.query('UPDATE courses SET nombre = ?, descripcion = ?, ciudad = ?, fecha_inicio = ?, fecha_fin = ?, foto1 = ?, foto2 = ?, foto3 = ?, precio = ?, horario = ?, total_horas = ?, estado = ?, isDelete = ?, rating = ?, categoria = ? WHERE id = ?', [nombre, descripcion, ciudad, fecha_inicio, fecha_fin, foto1, foto2, foto3, precio, horario, total_horas, estado, isDelete, rating, categoria, courseId])
 }
 
 //Eliminar un curso haciendo un Update

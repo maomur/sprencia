@@ -103,7 +103,7 @@ router.post('/update/:courseId', async (req, res) => {
     try {
         const { courseId } = req.params;
         const [resultado] = await CursoModel.updateCourse(courseId, req.body);
-        res.json({ title: resultado })
+        res.json(resultado)
     } catch (error) {
         res.json({ error: error.message })
     }
