@@ -46,7 +46,7 @@ Content-Type: application/json
 // Editar un Curso
 POST http://localhost:3330/api/courses/update/14
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODI2OTIzMTMsImlhdCI6MTY4MjY4ODcxM30.ypLsK4UMLJAUlgmnL6fJmAb1LVfc82EWsxd8ZQXEaBY
+# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODI2OTIzMTMsImlhdCI6MTY4MjY4ODcxM30.ypLsK4UMLJAUlgmnL6fJmAb1LVfc82EWsxd8ZQXEaBY
 
 {
     "nombre": "Prueba de Curso Edición",

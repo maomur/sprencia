@@ -75,8 +75,7 @@ router.get('/:categoria', async (req, res) => {
 
 
 //Eliminar un curso por Id
-//checkToken, checkAdmin
-router.get('/delete/:courseId', async (req, res) => {
+router.get('/delete/:courseId', checkToken, async (req, res) => {
     try {
         const { courseId } = req.params;
         const [resultado] = await CursoModel.deletCourseById(courseId);
@@ -87,11 +86,10 @@ router.get('/delete/:courseId', async (req, res) => {
 })
 
 //Crear un curso
-////checkToken, checkAdmin
-router.post('/create', async (req, res) => {
+router.post('/create', checkToken, checkAdmin, async (req, res) => {
     try {
         const [resultado] = await CursoModel.createCourse(req.body);
-        res.json(resultado)
+        res.json(resultado[0])
     } catch (error) {
         res.json({ error: error.message })
     }
@@ -99,7 +97,7 @@ router.post('/create', async (req, res) => {
 
 //Actualizar un curso
 //checktoken, checkadmin
-router.post('/update/:courseId', async (req, res) => {
+router.post('/update/:courseId', checkToken, async (req, res) => {
     try {
         const { courseId } = req.params;
         const [resultado] = await CursoModel.updateCourse(courseId, req.body);

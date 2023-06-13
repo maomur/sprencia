@@ -30,17 +30,17 @@ Content-Type: application/json
 
 ###
 //Editar Usuario
-POST http://localhost:3330/api/users/update/1
+POST http://localhost:3330/api/users/update/2
 Content-Type: application/json
 
 {
-    "name": "Mauricio",
+    "name": "Eva",
     "lastname": "Murcia Spencer",
-    "email": "maomurs@gmail.com",
-    "roll": "cliente",
-    "password": 1234,
-    "picture": null,
     "ciudad": "Barcelona",
+    "picture": null,
+    "email": "evix@gmail.com",
+    "password": 1234,
+    "roll": "cliente",
     "isDelete": 0
 }
 

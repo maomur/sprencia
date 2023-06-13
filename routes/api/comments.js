@@ -20,7 +20,7 @@ router.get('/:commentId', async (req, res) => {
     try {
         const { commentId } = req.params;
         const [resultado] = await CommentModel.getCommentById(commentId);
-        res.json(resultado)
+        res.json(resultado[0])
     } catch (error) {
         res.json({ error: error.message })
     }
