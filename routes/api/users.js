@@ -10,8 +10,7 @@ const { createToken } = require('../../helpers/utils')
 //--------------- RUTAS USUARIOS -----------------//
 
 // Obtener todos los usuarios
-//router.get('/', checkToken, checkAdmin, async (req, res) => {
-router.get('/', async (req, res) => {
+router.get('/', checkToken, checkAdmin, async (req, res) => {
     try {
         const [resultado] = (await UsuarioModel.getAllUsers());
         res.json(resultado);
@@ -35,7 +34,7 @@ router.get('/delete/:userId', async (req, res) => {
 
 //Crear un usuario
 //checkToken, checkAdmin
-router.post('/create', async (req, res) => {
+router.post('/create', checkToken, checkAdmin, async (req, res) => {
     try {
         req.body.password = bcrypt.hashSync(req.body.password, 9);
         const [resultado] = await UsuarioModel.createUser(req.body);
@@ -64,7 +63,7 @@ router.post('/register',
 
 //Actualizar un usario
 //checkToken, checkAdmin
-router.post('/update/:userId', async (req, res) => {
+router.put('/update/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
         const resultado = await UsuarioModel.updateUser(userId, req.body);
@@ -92,7 +91,7 @@ router.get('/:userId', async (req, res) => {
 router.post('/login', async (req, res) => {
     const { email, password } = req.body
     const [resultado] = await UsuarioModel.getUserByEmail(email);
-    if (resultado.length === 0) {
+    if (resultado.length === 0 || email === "" || password === "") {
         return res.json({ error: 'Error en email o contraseña' })
     }
     const user = resultado[0];
@@ -100,7 +99,7 @@ router.post('/login', async (req, res) => {
 
     if (equals) {
         // Login correcto
-        res.json({ success: 'Login correcto', token: createToken(user) });
+        res.json({ success: 'Login correcto', token: createToken(user), roll: user.roll });
     } else {
         res.json({ error: 'Error en email y/o contraseña' });
     }

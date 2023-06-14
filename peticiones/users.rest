@@ -3,7 +3,7 @@
 ###
 //Listar usuarios
 GET http://localhost:3330/api/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODM3NDY1MzQsImlhdCI6MTY4Mzc0NjIzNH0.dsSR6WQdC06TWB60l5ONZAJHL7NFgSkCOSY8-SCXrD8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODY2ODkwNzAsInJvbGwiOiJhZG1pbiIsImlhdCI6MTY4NjY4ODc3MH0.CMLvCvmKvqg7_pA19xFcIIZT0yAwl5kEKKtYii13XL4
 
 ### //Ver único usuario
 GET http://localhost:3330/api/users/63
@@ -18,28 +18,28 @@ POST http://localhost:3330/api/users/create
 Content-Type: application/json
 
 {
-    "name": "Mao 1256",
-    "lastname": "Murcia Spencer",
+    "name": "Emma",
+    "lastname": "Requena",
     "ciudad": "Madrid",
-    "picture": "hola",
-    "email": "132@gmail.com",
-    "password": "123445",
+    "picture": "",
+    "email": "emma@gmail.com",
+    "password": "emma",
     "roll": "cliente",
-    "isDelete": 1
+    "isDelete": 0
 }
 
 ###
 //Editar Usuario
-POST http://localhost:3330/api/users/update/2
+PUT http://localhost:3330/api/users/update/84
 Content-Type: application/json
 
 {
     "name": "Eva",
-    "lastname": "Murcia Spencer",
+    "lastname": "Ruiz Spencer",
     "ciudad": "Barcelona",
     "picture": null,
     "email": "evix@gmail.com",
-    "password": 1234,
+    "password": "evix",
     "roll": "cliente",
     "isDelete": 0
 }

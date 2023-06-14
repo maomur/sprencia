@@ -34,7 +34,7 @@ Content-Type: application/json
 
 ###
 //Ver único comentario
-GET http://localhost:3330/api/comments/5
+GET http://localhost:3330/api/comments/14
 
 ###
 //Ver Opiniones por Curso

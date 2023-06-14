@@ -22,7 +22,7 @@ const createUser = ({ name, lastname, ciudad, picture, email, password, roll, is
 
 //Editar un usuario
 const updateUser = (userId, { name, lastname, ciudad, picture, email, password, roll, isDelete }) => {
-    return db.query('UPDATE users SET name = ?, lastname = ?, ciudad = ?, picture = ?, email = ?, password = ?, roll = ?, isDelete = ? WHERE id = ?', [name, lastname, ciudad, picture, email, password, roll, isDelete, userId])
+    return db.query('UPDATE users SET name = ?, lastname = ?, ciudad = ?, picture = ?, email = ?, password = ?, roll = ?, isDelete = ? WHERE id = ?', [name, lastname, ciudad, picture, email, password, roll, 0, userId])
 }
 
 //Eliminar un usuario haciendo Update
