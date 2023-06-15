@@ -1,10 +1,9 @@
 const router = require('express').Router();
 const UsuarioModel = require('../../models/usuario.model');
 const bcrypt = require('bcrypt');
-const { body, validationResult } = require('express-validator');
-const jwt = require('jsonwebtoken');
 const { checkToken, checkAdmin } = require('../middlewares');
 const { createToken } = require('../../helpers/utils')
+
 
 
 //--------------- RUTAS USUARIOS -----------------//
@@ -21,8 +20,7 @@ router.get('/', checkToken, checkAdmin, async (req, res) => {
 
 
 //Eliminar usuario por Id
-//checkToken, checkAdmin
-router.get('/delete/:userId', async (req, res) => {
+router.get('/delete/:userId', checkToken, checkAdmin, async (req, res) => {
     try {
         const { userId } = req.params;
         const [resultado] = await UsuarioModel.deleteUserById(userId);
@@ -33,7 +31,6 @@ router.get('/delete/:userId', async (req, res) => {
 })
 
 //Crear un usuario
-//checkToken, checkAdmin
 router.post('/create', checkToken, checkAdmin, async (req, res) => {
     try {
         req.body.password = bcrypt.hashSync(req.body.password, 9);
@@ -62,8 +59,7 @@ router.post('/register',
 
 
 //Actualizar un usario
-//checkToken, checkAdmin
-router.put('/update/:userId', async (req, res) => {
+router.put('/update/:userId', checkToken, checkAdmin, async (req, res) => {
     try {
         const { userId } = req.params;
         const resultado = await UsuarioModel.updateUser(userId, req.body);

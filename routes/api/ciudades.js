@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const CiudadesModel = require('../../models/ciudades.model')
 
+
 //--------------- RUTAS CIUDADES -----------------//
 
 //Obtener todas las ciudades

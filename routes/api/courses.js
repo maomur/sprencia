@@ -96,7 +96,7 @@ router.post('/create', checkToken, checkAdmin, async (req, res) => {
 })
 
 //Actualizar un curso
-router.post('/update/:courseId', checkToken, checkAdmin, async (req, res) => {
+router.put('/update/:courseId', checkToken, checkAdmin, async (req, res) => {
     try {
         const { courseId } = req.params;
         const [resultado] = await CursoModel.updateCourse(courseId, req.body);

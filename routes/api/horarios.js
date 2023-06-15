@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const HorariosModel = require('../../models/horarios.model');
 
-//--------------- RUTAS CIUDADES -----------------//
+
+//--------------- RUTAS HORARIOS -----------------//
 
 //Obtener Horarios
 router.get('/', async (req, res) => {

@@ -1,12 +1,17 @@
 const db = require('../config/db').promise();
 
-//Listar todos los cursos
+
+//--------------- CURSOS MODEL ------------------//
+
+
+//Listar cursos con límite 12
 const getAllCourses = () => {
-    return db.query('SELECT * FROM courses WHERE isDelete = 0 LIMIT 12')
+    return db.query('SELECT * FROM courses WHERE isDelete = 0 ORDER BY id DESC LIMIT 12')
 }
 
+//Listar todos los cursos
 const getAllCoursesUnlimited = () => {
-    return db.query('SELECT * FROM courses WHERE isDelete = 0')
+    return db.query('SELECT * FROM courses WHERE isDelete = 0 ORDER BY id DESC')
 }
 
 //Listar 10  últimos cursos por ID
@@ -62,12 +67,12 @@ const orderByHorarioAsc = (horario) => {
 
 //Agregar un curso
 const createCourse = ({ nombre, descripcion, ciudad, fecha_inicio, fecha_fin, foto1, foto2, foto3, precio, horario, total_horas, estado, isDelete, rating, categoria }) => {
-    return db.query('INSERT INTO courses(nombre, descripcion, ciudad, fecha_inicio, fecha_fin, foto1, foto2, foto3, precio, horario, total_horas, estado, isDelete, rating, categoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, descripcion, ciudad, fecha_inicio, fecha_fin, foto1, foto2, foto3, precio, horario, total_horas, estado, 0, rating, categoria])
+    return db.query('INSERT INTO courses(nombre, descripcion, ciudad, fecha_inicio, fecha_fin, foto1, foto2, foto3, precio, horario, total_horas, estado, isDelete, rating, categoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [nombre, descripcion, ciudad, fecha_inicio, fecha_fin, '../../../assets/img/sprencia-marketing-digital.jpg', '../../../assets/img/curso-marketing-contenidos.jpg', '../../../assets/img/sprencia-curso-de-administracion-de-redes-sociales.jpg', precio, horario, total_horas, estado, 0, rating, categoria])
 }
 
 //Editar un curso
 const updateCourse = (courseId, { nombre, descripcion, ciudad, fecha_inicio, fecha_fin, foto1, foto2, foto3, precio, horario, total_horas, estado, isDelete, rating, categoria }) => {
-    return db.query('UPDATE courses SET nombre = ?, descripcion = ?, ciudad = ?, fecha_inicio = ?, fecha_fin = ?, foto1 = ?, foto2 = ?, foto3 = ?, precio = ?, horario = ?, total_horas = ?, estado = ?, isDelete = ?, rating = ?, categoria = ? WHERE id = ?', [nombre, descripcion, ciudad, fecha_inicio, fecha_fin, foto1, foto2, foto3, precio, horario, total_horas, estado, isDelete, rating, categoria, courseId])
+    return db.query('UPDATE courses SET nombre = ?, descripcion = ?, ciudad = ?, fecha_inicio = ?, fecha_fin = ?, foto1 = ?, foto2 = ?, foto3 = ?, precio = ?, horario = ?, total_horas = ?, estado = ?, isDelete = ?, rating = ?, categoria = ? WHERE id = ?', [nombre, descripcion, ciudad, fecha_inicio, fecha_fin, '../../../assets/img/sprencia-marketing-digital.jpg', '../../../assets/img/curso-marketing-contenidos.jpg', '../../../assets/img/sprencia-curso-de-administracion-de-redes-sociales.jpg', precio, horario, total_horas, estado, isDelete, rating, categoria, courseId])
 }
 
 //Eliminar un curso haciendo un Update

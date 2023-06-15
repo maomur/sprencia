@@ -1,8 +1,11 @@
 const db = require('../config/db').promise();
 
+
+//--------------- USUARIOS MODEL ------------------//
+
 //Listar todos los usuarios
 const getAllUsers = () => {
-    return db.query('SELECT * FROM users WHERE isDelete = 0')
+    return db.query('SELECT * FROM users WHERE isDelete = 0 ORDER BY id DESC')
 }
 
 //Buscar un único usuario por Id

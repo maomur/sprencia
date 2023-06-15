@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const CategoriaModel = require('../../models/categorias.model');
 
+
 //--------------- RUTAS CATEGORÍAS -----------------//
 
 //Obtener todas las categorías

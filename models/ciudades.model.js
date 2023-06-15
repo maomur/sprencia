@@ -1,5 +1,8 @@
 const db = require('../config/db').promise();
 
+
+//--------------- CIUDADES MODEL ------------------//
+
 //Listar todas las ciudades
 const getCities = () => {
     return db.query('SELECT * FROM ciudades')

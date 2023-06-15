@@ -3,10 +3,11 @@ const CommentModel = require('../../models/opiniones.model');
 const { checkToken, checkAdmin } = require('../middlewares');
 
 
+
 //---------- RUTAS COMMENTARIOS ----------//
 
 //Obtener todos los comentarios
-router.get('/', async (req, res) => {
+router.get('/', checkToken, checkAdmin, async (req, res) => {
     try {
         const [resultado] = await CommentModel.getAllComments();
         res.json(resultado)
@@ -35,8 +36,7 @@ router.get('/curso/:cursoId', async (req, res) => {
 })
 
 //Eliminar comentario por Id
-// //checkToken, checkAdmin
-router.get('/delete/:commentId', async (req, res) => {
+router.get('/delete/:commentId', checkToken, checkAdmin, async (req, res) => {
     try {
         const { commentId } = req.params;
         const [resultado] = await CommentModel.deleteCommentById(commentId);
@@ -48,8 +48,7 @@ router.get('/delete/:commentId', async (req, res) => {
 })
 
 //Crear un Comentario
-// //checkToken, checkAdmin
-router.post('/create', async (req, res) => {
+router.post('/create', checkToken, checkAdmin, async (req, res) => {
     try {
         const [resultado] = await CommentModel.createComment(req.body);
         res.json(resultado)
@@ -59,8 +58,7 @@ router.post('/create', async (req, res) => {
 })
 
 //Actualizar un comentario
-//checkToken, checkAdmin
-router.post('/update/:commentId', async (req, res) => {
+router.post('/update/:commentId', checkToken, checkAdmin, async (req, res) => {
     try {
         const { commentId } = req.params;
         const [resultado] = await CommentModel.updateComment(commentId, req.body);
