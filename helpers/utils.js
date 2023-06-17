@@ -5,7 +5,7 @@ function createToken(user) {
     const obj = {
         userId: user.id,
         username: user.name,
-        exp_date: dayjs().add(60, 'minutes').unix(),
+        exp_date: dayjs().add(10, 'minutes').unix(),
         roll: user.roll
     }
     return jwt.sign(obj, 'codehouse')

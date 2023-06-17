@@ -23,7 +23,7 @@ const createUser = ({ name, lastname, ciudad, picture, email, password, roll, is
     return db.query('INSERT INTO users(name, lastname, ciudad, picture, email, password, roll, isDelete) VALUES(?, ?, ?, ?, ?, ?, ?, ?)', [name, lastname, ciudad, picture, email, password, roll, 0])
 }
 
-//Editar un usuario
+//Actualizar un usuario
 const updateUser = (userId, { name, lastname, ciudad, picture, email, password, roll, isDelete }) => {
     return db.query('UPDATE users SET name = ?, lastname = ?, ciudad = ?, picture = ?, email = ?, password = ?, roll = ?, isDelete = ? WHERE id = ?', [name, lastname, ciudad, picture, email, password, roll, 0, userId])
 }

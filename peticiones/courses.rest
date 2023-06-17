@@ -44,9 +44,9 @@ Content-Type: application/json
 
 ###
 // Editar un Curso
-POST http://localhost:3330/api/courses/update/14
+PUT http://localhost:3330/api/courses/update/163
 Content-Type: application/json
-# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODI2OTIzMTMsImlhdCI6MTY4MjY4ODcxM30.ypLsK4UMLJAUlgmnL6fJmAb1LVfc82EWsxd8ZQXEaBY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjc5LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIiwiZXhwX2RhdGUiOjE2ODY4NDA0MjYsInJvbGwiOiJhZG1pbiIsImlhdCI6MTY4NjgzNjgyNn0.7bIowong5XAQUDWl_N2Fu62Wra1Q8grVFkqj5xKHGgc
 
 {
     "nombre": "Prueba de Curso Edición",
@@ -61,7 +61,7 @@ Content-Type: application/json
     "horario": null,
     "total_horas": null,
     "estado": "inactivo",
-    "isDelete": 1,
+    "isDelete": 0,
     "rating": 5,
     "categoria": "Arte"
 }

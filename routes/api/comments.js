@@ -58,11 +58,11 @@ router.post('/create', checkToken, checkAdmin, async (req, res) => {
 })
 
 //Actualizar un comentario
-router.post('/update/:commentId', checkToken, checkAdmin, async (req, res) => {
+router.put('/update/:id', checkToken, checkAdmin, async (req, res) => {
+    const { id } = req.params;
     try {
-        const { commentId } = req.params;
-        const [resultado] = await CommentModel.updateComment(commentId, req.body);
-        res.json({ title: resultado })
+        const [resultado] = await CommentModel.updateComment(id, req.body);
+        res.json(resultado)
     } catch (error) {
         res.json({ error: error.message })
     }

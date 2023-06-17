@@ -42,7 +42,6 @@ router.post('/create', checkToken, checkAdmin, async (req, res) => {
 })
 
 //Registro de un usuario
-//checkToken, checkAdmin
 router.post('/register',
     // body('email').isEmail().exists(),
     // body('name').isLength({ min: 5 }),
@@ -61,6 +60,7 @@ router.post('/register',
 //Actualizar un usario
 router.put('/update/:userId', checkToken, checkAdmin, async (req, res) => {
     try {
+
         const { userId } = req.params;
         const resultado = await UsuarioModel.updateUser(userId, req.body);
         res.json(resultado)

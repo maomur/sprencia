@@ -22,11 +22,12 @@ Content-Type: application/json
 
 ###
 //Editar un Comentario
-POST http://localhost:3330/api/comments/update/7
+PUT http://localhost:3330/api/comments/update/14
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjc5LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIiwiZXhwX2RhdGUiOjE2ODcwMjQ1NTEsInJvbGwiOiJhZG1pbiIsImlhdCI6MTY4NzAyMzk1MX0.tPrh7zMxDEMXbLqYHRAL-MKJJY8EZkEqKLSAMh6iYag
 
 {
-    "comentario": "La mejor atención y el mejor precio",
+    "comentario": "La mejor atención, el mejor precio y calidad",
     "estado": "Publicado",
     "usuario": "Mauricio",
     "isDelete": 0

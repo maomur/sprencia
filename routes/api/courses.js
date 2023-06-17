@@ -21,7 +21,11 @@ router.get('/', async (req, res) => {
 //Obtener todos los cursos sin límite
 router.get('/all', async (req, res) => {
     const [resultado] = await CursoModel.getAllCoursesUnlimited();
-    res.json(resultado)
+    const cursoLimitado = resultado.map((curso) => {
+        const descripcionLimitada = curso.descripcion.substring(0, 70);
+        return { ...curso, descripcion: descripcionLimitada + '...' }
+    })
+    res.json(cursoLimitado)
 })
 
 //Obtener últimos 10 cursos

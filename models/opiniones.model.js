@@ -26,7 +26,7 @@ const createComment = ({ comentario, fecha_comentario, estado, usuario, isDelete
 
 //Editar un comentario 
 const updateComment = (commentId, { comentario, fecha_comentario, estado, usuario, isDelete, curso, curso_id }) => {
-    return db.query('UPDATE comentarios SET comentario = ?, fecha_comentario = ?, estado = ?, usuario = ?, isDelete = ? WHERE id = ?', [comentario, fecha_comentario, estado, usuario, isDelete, commentId])
+    return db.query('UPDATE comentarios SET comentario = ?, fecha_comentario = ?, estado = ?, usuario = ?, isDelete = ?, curso = ?, curso_id = ? WHERE id = ?', [comentario, fecha_comentario, estado, usuario, 0, curso, curso_id, commentId])
 }
 
 //Eliminar un comentario haciendo un update
