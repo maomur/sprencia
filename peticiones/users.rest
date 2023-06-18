@@ -6,8 +6,18 @@ GET http://localhost:3330/api/users
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODY2ODkwNzAsInJvbGwiOiJhZG1pbiIsImlhdCI6MTY4NjY4ODc3MH0.CMLvCvmKvqg7_pA19xFcIIZT0yAwl5kEKKtYii13XL4
 
 ### //Ver único usuario
-GET http://localhost:3330/api/users/63
+GET http://localhost:3330/api/users/50
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE3LCJ1c2VybmFtZSI6Ik1hdXJpY2lvIEFtZGluIiwiZXhwX2RhdGUiOjE2ODI2OTIzMTMsImlhdCI6MTY4MjY4ODcxM30.ypLsK4UMLJAUlgmnL6fJmAb1LVfc82EWsxd8ZQXEaBY
+
+###
+//Buscar usuario por Email
+GET http://localhost:3330/api/users/searchUser/maomur@gmail.com
+
+
+###
+//Buscar email de un usuario
+GET http://localhost:3330/api/users/emailUser/maomur@gmail.com
+
 
 ### Buscar curso por palabra
 GET http://localhost:3330/api/courses/search/guitarra
@@ -74,3 +84,6 @@ Content-Type: application/json
     "email": "maomur@gmail.com",
     "password": "maomur"
 }
+
+
+//Reset Password TODO

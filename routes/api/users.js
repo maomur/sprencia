@@ -2,7 +2,8 @@ const router = require('express').Router();
 const UsuarioModel = require('../../models/usuario.model');
 const bcrypt = require('bcrypt');
 const { checkToken, checkAdmin } = require('../middlewares');
-const { createToken } = require('../../helpers/utils')
+const { createToken } = require('../../helpers/utils');
+const { check } = require('express-validator');
 
 
 
@@ -42,19 +43,16 @@ router.post('/create', checkToken, checkAdmin, async (req, res) => {
 })
 
 //Registro de un usuario
-router.post('/register',
-    // body('email').isEmail().exists(),
-    // body('name').isLength({ min: 5 }),
-    async (req, res) => {
-        try {
-            req.body.password = bcrypt.hashSync(req.body.password, 10);
-            const resultado = await UsuarioModel.createUser(req.body);
-            res.json(resultado);
-        } catch (error) {
-            res.json({ error: error.message })
-        }
+router.post('/register', async (req, res) => {
+    try {
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
+        const [resultado] = await UsuarioModel.createUser(req.body);
+        res.json(resultado);
+    } catch (error) {
+        res.json({ error: error.message })
+    }
 
-    })
+})
 
 
 //Actualizar un usario
@@ -82,6 +80,28 @@ router.get('/:userId', async (req, res) => {
     }
 })
 
+//Obtener Usuario por Email
+router.get('/searchUser/:email', async (req, res) => {
+    const { email } = req.params;
+    try {
+        const [resultado] = await UsuarioModel.getUserByEmail(email);
+        res.json(resultado[0])
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
+//Obtener Email de un usuario
+router.get('/emailUser/:email', async (req, res) => {
+    const { email } = req.params;
+    try {
+        const [resultado] = await UsuarioModel.getUserByEmail(email);
+        res.json(resultado[0].email)
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
 
 //Login
 router.post('/login', async (req, res) => {
@@ -101,6 +121,10 @@ router.post('/login', async (req, res) => {
     }
 
 })
+
+//Reset Password TODO
+
+
 
 
 module.exports = router;

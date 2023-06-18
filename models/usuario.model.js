@@ -33,7 +33,14 @@ const deleteUserById = (userId) => {
     return db.query('UPDATE users SET isDelete = 1 WHERE id = ?', [userId])
 }
 
+//Reset password
+const resetPassword = (id, { newPassword }) => {
+    return db.query('UPDATE users SET password = ? WHERE id = ?', [newPassword, id]);
+};
+
+
+
 
 module.exports = {
-    getAllUsers, getUserById, deleteUserById, createUser, updateUser, getUserByEmail
+    getAllUsers, getUserById, deleteUserById, createUser, updateUser, getUserByEmail, resetPassword
 }
